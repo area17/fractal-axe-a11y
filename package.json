@@ -1,0 +1,15 @@
+{
+  "name": "fractal-axe-a11y",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "axe-core": "^4.1.3"
+  },
+  "files": [
+    "dist"
+  ]
+}

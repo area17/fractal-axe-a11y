@@ -1,0 +1,148 @@
+.axe-a11y {
+  width: 100%;
+}
+
+.axe-a11y__controls {
+}
+
+.axe-a11y__controls button {
+  display: inline-block;
+  padding: 16px 24px;
+  background: #ccc;
+  transition: all 0.2s ease;
+}
+
+.axe-a11y__controls button:hover,
+.axe-a11y__controls button:focus {
+  background: #000;
+  color: #fff;
+}
+
+.axe-a11y__results {
+  padding-bottom: .75rem;
+}
+
+.axe-a11y__group {
+  margin-top: .75rem;
+  padding: 1.25rem;
+  border: 1px solid rgba(83,83,99,.25);
+  background: white;
+  /* margin-top: 28px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(83,83,99,.25) */
+}
+
+.axe-a11y__group-title {
+  font-size: 20px;
+}
+
+.axe-a11y__group--violations .axe-a11y__group-title {
+  color: #ff4400;
+}
+
+.axe-a11y__group--passes .axe-a11y__group-title {
+  color: #66BF3C;
+}
+
+.axe-a11y__group--incomplete .axe-a11y__group-title {
+  color: #E69D00;
+}
+
+.axe-a11y__group--violations {
+}
+
+.axe-a11y__group--passes {
+}
+
+.axe-a11y__group--incomplete {
+}
+
+.axe-a11y__items {
+  margin-top: 16px;
+}
+
+.axe-a11y__item {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #ccc;
+}
+
+.axe-a11y__impact {
+  display: inline-block;
+  margin-right: 8px;
+  padding: 2px 16px;
+  background: #eee;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: capitalize;
+  vertical-align: middle;
+}
+
+.axe-a11y__impact--moderate {
+  background: #FFF5CF;
+  color: #E69D00;
+}
+
+.axe-a11y__impact--serious {
+  background: #FEDED2;
+  color: #ff4400;
+}
+
+.axe-a11y__impact--critical {
+  background: #ff4400;
+  color: #fff;
+}
+
+.axe-a11y__title {
+}
+
+.axe-a11y__item p {
+  margin-top: 12px;
+}
+
+.axe-a11y__subtitle {
+  display: block;
+  margin-top: 12px;
+  font-weight: 600;
+}
+
+.axe-a11y__cta {
+  border-bottom: 1px solid transparent;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.axe-a11y__cta:hover,
+.axe-a11y__cta:focus {
+  border-bottom-color: inherit;
+}
+
+.axe-a11y__item-tags-wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: baseline;
+}
+
+.axe-a11y__item-tags-wrapper .axe-a11y__subtitle {
+  margin-right: 8px;
+}
+
+.axe-a11y__item-tags {
+  display: flex;
+  flex-flow: row wrap;
+  margin-top: 4px;
+}
+
+.axe-a11y__item-tags li {
+  margin-bottom: 8px;
+  margin-right: 8px;
+  padding: 2px 16px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background: #e0e0e0;
+  font-size: 12px;
+  font-weight: bold;
+}
