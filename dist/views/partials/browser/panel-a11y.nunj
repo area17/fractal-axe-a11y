@@ -1,8 +1,7 @@
 <div class="Browser-panel Browser-axe-a11y" data-role="tab-panel" id="browser-{{ entity.id }}-panel-a11y">
     <div class="axe-a11y">
         <div class="axe-a11y__controls">
-            <button onclick="FractalAxeA11yUI.run()">Test with axe-a11y</button>
-            <span class="axe-a11y__history"></span>
+            <button onclick="FractalAxeA11yUI.run()">Run Tests</button>
         </div>
         <div class="axe-a11y__results"></div>
     </div>

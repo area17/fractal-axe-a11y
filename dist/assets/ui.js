@@ -54,7 +54,7 @@
 
         <p>${item.description}</p>
 
-        <a href="${item.helpUrl}" target="_blank" aria-label="More info. Opens in a new tab." class="axe-a11y__cta">More info</a>
+        <p><a href="${item.helpUrl}" target="_blank" aria-label="More info. Opens in a new tab." class="axe-a11y__cta">More info</a></p>
 
         <div class="axe-a11y__item-tags-wrapper">
           <span class="axe-a11y__subtitle">Tags</span>
