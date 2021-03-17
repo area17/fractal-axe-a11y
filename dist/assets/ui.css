@@ -3,6 +3,9 @@
 }
 
 .axe-a11y__controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .axe-a11y__controls button {
@@ -16,6 +19,10 @@
 .axe-a11y__controls button:focus {
   background: #000;
   color: #fff;
+}
+
+.axe-a11y__date {
+  font-size: 14px;
 }
 
 .axe-a11y__results {

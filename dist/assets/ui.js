@@ -1,6 +1,8 @@
-(function (d) {
+(function (d, f) {
 
   function FractalAxeA11yUI(){
+    this.loadData();
+
     window.addEventListener("message", this.receiveMessage.bind(this), false);
   }
 
@@ -14,6 +16,8 @@
 
     if( e.data.message === 'a11yResults'){
       this.parseResults(e.data.results);
+
+      this.saveData(e.data.results);
     }
   };
 
@@ -81,11 +85,60 @@
   };
 
   FractalAxeA11yUI.prototype.clearElement = function (element) {
-      while (element.firstChild) {
-          element.removeChild(element.firstChild);
-      }
-      return element;
+    while (element.firstChild) {
+      element.removeChild(element.firstChild);
+    }
+    return element;
+  };
+
+  FractalAxeA11yUI.prototype.setDate = function (date) {
+    const latestDate = date ? new Date(date) : new Date();
+    const parsedDate = latestDate.toLocaleDateString();
+    const parsedTime = latestDate.toLocaleTimeString();
+    const dateElement = document.querySelector('.axe-a11y__date');
+
+    dateElement.innerHTML = `Last updated: ${parsedDate} - ${parsedTime}`;
+  };
+
+  FractalAxeA11yUI.prototype.loadData = function () {
+    if(!window.localStorage) return;
+
+    const storeId = this.getStoreId();
+
+    console.log(storeId);
+    const data = window.localStorage.getItem(storeId);
+
+    if(!data) return;
+
+    const parsedData = JSON.parse(data);
+
+    this.setDate(parsedData.date);
+    this.parseResults(parsedData.results);
+  };
+
+  FractalAxeA11yUI.prototype.saveData = function (data) {
+    if(!window.localStorage) return;
+
+    const storeId = this.getStoreId();
+    const date = new Date();
+
+    const storeData = {
+      date,
+      results: data
+    };
+
+    window.localStorage.setItem(storeId, JSON.stringify(storeData));
+
+    this.setDate(date);
+  };
+
+  FractalAxeA11yUI.prototype.getStoreId = function () {
+    const wrapper = document.querySelector('.Browser-axe-a11y');
+    const entityId = wrapper.getAttribute('data-entity-id');
+    const entityHandle = wrapper.getAttribute('data-entity-handle');
+
+    return `fractal-a11y-${entityHandle}-${entityId}`;
   };
 
   window.FractalAxeA11yUI = new FractalAxeA11yUI();
-}(document));
+}(document, fractal));
