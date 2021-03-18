@@ -13,4 +13,6 @@
     </div>
 </div>
 
-<script>FractalAxeA11yUI.loadData()</script>
+<script>
+window.dispatchEvent(new Event('a11yPanelLoad'));
+</script>

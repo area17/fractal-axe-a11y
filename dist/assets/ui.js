@@ -1,9 +1,9 @@
-(function (d, f) {
-
+(function (d) {
   function FractalAxeA11yUI(){
     this.loadData();
 
     window.addEventListener("message", this.receiveMessage.bind(this), false);
+    window.addEventListener('a11yPanelLoad', this.loadData.bind(this), false);
   }
 
   FractalAxeA11yUI.prototype.run = function () {
@@ -105,7 +105,6 @@
 
     const storeId = this.getStoreId();
 
-    console.log(storeId);
     const data = window.localStorage.getItem(storeId);
 
     if(!data) return;
@@ -141,4 +140,4 @@
   };
 
   window.FractalAxeA11yUI = new FractalAxeA11yUI();
-}(document, fractal));
+}(document));
