@@ -23130,7 +23130,7 @@
       if (!active) {
         active = true;
 
-        axe.run(this.element)
+        axe.run(this.element.children)
           .then(results => {
             window.parent.postMessage({ message: 'a11yResults', results});
           })
