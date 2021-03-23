@@ -1,7 +1,7 @@
 {
-  "name": "fractal-axe-a11y",
+  "name": "@area17/fractal-axe-a11y",
   "version": "1.0.0",
-  "description": "",
+  "description": "A Fractal addon to test your components for accessibility issues using Axe",
   "main": "index.js",
   "scripts": {
     "dev": "npm run development",
@@ -14,7 +14,7 @@
     "fractal:start": "fractal start --sync",
     "fractal:build": "fractal build"
   },
-  "author": "",
+  "author": "AREA 17",
   "license": "ISC",
   "devDependencies": {
     "axe-core": "^4.1.3",
