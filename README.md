@@ -17,7 +17,7 @@ npm i fractal-axe-a11y
 ```js
 // require fractal theme
 const mandelbrot = require('@frctl/mandelbrot');
-const axeA11y = require('fractal-axe-a11y');
+const axeA11y = require('@area17/fractal-axe-a11y');
 
 // configure theme
 const theme = mandelbrot({ ... })
@@ -31,12 +31,20 @@ fractal.web.theme(theme);
 
 2. Copy `preview-a11y.js` from package to Fractal public folder. Example using [Laravel Mix](https://laravel-mix.com/):
 
-```js
-mix.copy("node_modules/fractal-axe-a11y/preview-a11y.js", 'public/preview-a11y.js');
+```javascript
+$ cp -i node_modules/fractal-axe-a11y/preview-a11y.js public/preview-a11y.js
 ```
 
 3. Include `preview-a11y.js` in Fractal `preview` template:
 
-```twig
-<script src="{{ '/preview-a11y.js' | path }}"></script>
+```handlebars
+<script src="{{ path '/preview-a11y.js' }}"></script>
+```
+
+4. Add an ID of `component-preview` to your `preview` template to the container of your main yeild
+
+```handlebars
+<main id="component-preview">
+  {{{ yield }}}
+</main>
 ```
