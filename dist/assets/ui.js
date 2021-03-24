@@ -43,9 +43,47 @@
 
       resultsContainer.innerHTML += this.buildGroup(title, 'incomplete', results.incomplete);
     }
+
+    this.initExpanders();
   };
 
-  FractalAxeA11yUI.prototype.escapeHTML = function (str){
+  FractalAxeA11yUI.prototype.initExpanders = function (){
+    const expanders = document.querySelectorAll('[data-a11y-expander]');
+
+    expanders.forEach(item => {
+      const trigger = item.querySelector('[data-a11y-expander-trigger]');
+      const content = item.querySelector('[data-a11y-expander-content]');
+      const contentInner = item.querySelector('[data-a11y-expander-content-inner]');
+
+      trigger.addEventListener('click', (e) => {
+        const isActive = item.classList.contains('axe-a11y__expander--active');
+        const contentHeight = contentInner.clientHeight;
+
+        if( isActive ){
+          content.style.height = `${contentHeight}px`;
+          item.classList.remove('axe-a11y__expander--active');
+
+          setTimeout(() => {
+            content.style.height = '';
+          }, 1);
+        }else{
+          content.style.height = `${contentHeight}px`;
+
+          setTimeout(() => {
+            item.classList.add('axe-a11y__expander--active');
+
+            content.style.height = ``;
+          }, 300);
+        }
+
+        e.preventDefault();
+      }, false);
+    })
+  };
+
+  FractalAxeA11yUI.prototype.parseString = function (str){
+    if(!str) return;
+
     return str.replace(/[&<>]/g,
       tag =>
         ({
@@ -54,30 +92,58 @@
           '>': '&gt;',
           "'": '&#39;',
           '"': '&quot;'
-        }[tag] || tag));
+        }[tag] || tag)).replace(/(\r\n|\n\r|\r|\n)/g, '<br>');
   }
 
   FractalAxeA11yUI.prototype.buildItem = function (item) {
-    let tags = item.tags.map((tag) => {
-      return `<li>${this.escapeHTML(tag)}</li>`;
+    const tags = item.tags.map((tag) => {
+      return `<li>${this.parseString(tag)}</li>`;
+    }).join('');
+
+
+    const nodes = item.nodes.map((el) => {
+      return `
+        <li>
+          <p><code>${el.target}</code></p>
+
+          ${el.impact ? `<span class="axe-a11y__impact axe-a11y__impact--${el.impact}">${this.parseString(el.impact)}</span>` : ``}
+
+          <p>${this.parseString(el.failureSummary)}</p>
+        </li>
+      `;
     }).join('');
 
     return `
-      <li class="axe-a11y__item">
-        ${item.impact ? `<span class="axe-a11y__impact axe-a11y__impact--${item.impact}">${this.escapeHTML(item.impact)}</span>` : ``}
+    <li class="axe-a11y__item axe-a11y__expander" data-a11y-expander>
+      <button class="axe-a11y__expander-trigger" data-a11y-expander-trigger>
+        <span class="axe-a11y__expander-icon"></span>
 
-        <span class="axe-a11y__title">${this.escapeHTML(item.help)}</span>
+        <span class="axe-a11y__expander-title">${this.parseString(item.help)}</span>
 
-        <p>${this.escapeHTML(item.description)}</p>
+        ${item.impact ? `<span class="axe-a11y__impact axe-a11y__impact--${item.impact}">${this.parseString(item.impact)}</span>` : ``}
+      </button>
 
-        <p><a href="${item.helpUrl}" target="_blank" aria-label="More info. Opens in a new tab." class="axe-a11y__cta">More info</a></p>
+      <div class="axe-a11y__expander-content" data-a11y-expander-content>
+        <div class="axe-a11y__expander-content-inner" data-a11y-expander-content-inner>
+          <p>${this.parseString(item.description)}</p>
 
-        <div class="axe-a11y__item-tags-wrapper">
-          <span class="axe-a11y__subtitle">Tags</span>
+          <p><a href="${item.helpUrl}" target="_blank" aria-label="More info. Opens in a new tab." class="axe-a11y__cta">More info</a></p>
 
-          <ul class="axe-a11y__item-tags">
-            ${tags}
-          </ul>
+          <div class="axe-a11y__item-nodes-wrapper">
+            <span class="axe-a11y__subtitle">Issues</span>
+
+            <ol class="axe-a11y__item-nodes">
+              ${nodes}
+            </ol>
+          </div>
+
+          <div class="axe-a11y__item-tags-wrapper">
+            <span class="axe-a11y__subtitle">Tags</span>
+
+            <ul class="axe-a11y__item-tags">
+              ${tags}
+            </ul>
+          </div>
         </div>
       </li>
     `

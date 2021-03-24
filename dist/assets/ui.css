@@ -82,6 +82,7 @@
   border-radius: 20px;
   font-size: 12px;
   font-weight: bold;
+  line-height: 1.4;
   text-transform: capitalize;
   vertical-align: middle;
 }
@@ -147,9 +148,59 @@
   margin-bottom: 8px;
   margin-right: 8px;
   padding: 2px 16px;
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
   border-radius: 20px;
-  background: #e0e0e0;
+  background: #eee;
   font-size: 12px;
   font-weight: bold;
+}
+
+.axe-a11y__item-nodes-wrapper + .axe-a11y__item-tags-wrapper {
+  margin-top: 24px;
+}
+
+.axe-a11y__item-nodes-wrapper {
+}
+
+.axe-a11y__item-nodes {
+}
+
+.axe-a11y__item-nodes li {
+  list-style: decimal outside;
+  margin-top: 12px;
+  margin-left: 2em;
+  border-top: 1px solid #eee;
+}
+
+.axe-a11y__expander {
+}
+
+.axe-a11y__expander-trigger {
+  outline-offset: 8px;
+}
+
+.axe-a11y__expander-icon {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 12px;
+  border-top: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  transform: rotate(45deg);
+}
+
+.axe-a11y__expander-title {
+}
+
+.axe-a11y__expander-content {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.3s ease;
+}
+
+.axe-a11y__expander--active .axe-a11y__expander-content {
+  height: auto;
+}
+
+.axe-a11y__expander-content-inner {
 }
