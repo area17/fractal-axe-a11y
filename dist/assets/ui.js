@@ -45,18 +45,30 @@
     }
   };
 
+  FractalAxeA11yUI.prototype.escapeHTML = function (str){
+    return str.replace(/[&<>]/g,
+      tag =>
+        ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          "'": '&#39;',
+          '"': '&quot;'
+        }[tag] || tag));
+  }
+
   FractalAxeA11yUI.prototype.buildItem = function (item) {
     let tags = item.tags.map((tag) => {
-      return `<li>${tag}</li>`;
+      return `<li>${this.escapeHTML(tag)}</li>`;
     }).join('');
 
     return `
       <li class="axe-a11y__item">
-        ${item.impact ? `<span class="axe-a11y__impact axe-a11y__impact--${item.impact}">${item.impact}</span>` : ``}
+        ${item.impact ? `<span class="axe-a11y__impact axe-a11y__impact--${item.impact}">${this.escapeHTML(item.impact)}</span>` : ``}
 
-        <span class="axe-a11y__title">${item.help}</span>
+        <span class="axe-a11y__title">${this.escapeHTML(item.help)}</span>
 
-        <p>${item.description}</p>
+        <p>${this.escapeHTML(item.description)}</p>
 
         <p><a href="${item.helpUrl}" target="_blank" aria-label="More info. Opens in a new tab." class="axe-a11y__cta">More info</a></p>
 
