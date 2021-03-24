@@ -102,13 +102,15 @@
 
 
     const nodes = item.nodes.map((el) => {
+      if( !el.failureSummary) return;
+
       return `
         <li>
           <p><code>${el.target}</code></p>
 
           ${el.impact ? `<span class="axe-a11y__impact axe-a11y__impact--${el.impact}">${this.parseString(el.impact)}</span>` : ``}
 
-          <p>${this.parseString(el.failureSummary)}</p>
+          ${el.failureSummary ? `<p>${this.parseString(el.failureSummary)}</p>` : ``}
         </li>
       `;
     }).join('');
@@ -129,13 +131,15 @@
 
           <p><a href="${item.helpUrl}" target="_blank" aria-label="More info. Opens in a new tab." class="axe-a11y__cta">More info</a></p>
 
-          <div class="axe-a11y__item-nodes-wrapper">
-            <span class="axe-a11y__subtitle">Issues</span>
+          ${nodes ? `
+            <div class="axe-a11y__item-nodes-wrapper">
+              <span class="axe-a11y__subtitle">Issues</span>
 
-            <ol class="axe-a11y__item-nodes">
-              ${nodes}
-            </ol>
-          </div>
+              <ol class="axe-a11y__item-nodes">
+                ${nodes}
+              </ol>
+            </div>
+          ` : ``}
 
           <div class="axe-a11y__item-tags-wrapper">
             <span class="axe-a11y__subtitle">Tags</span>
