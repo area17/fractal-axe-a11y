@@ -23,6 +23,7 @@
     "postcss": "^8.2.6"
   },
   "files": [
-    "dist"
+    "dist",
+    "preview-a11y.js"
   ]
 }
