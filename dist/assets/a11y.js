@@ -2,9 +2,9 @@
   let active = false;
 
   function FractalAxeA11yTest() {
-      this.element = document.querySelector('#component-preview');
-      window.addEventListener("message", this.receiveMessage.bind(this), false);
-    }
+    this.element = document.querySelector('[data-axe-test-target]') || document.documentElement;
+    window.addEventListener('message', this.receiveMessage.bind(this), false);
+  }
 
   FractalAxeA11yTest.prototype.run = function () {
     try {

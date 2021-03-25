@@ -41,10 +41,10 @@ $ cp -i node_modules/fractal-axe-a11y/preview-a11y.js public/preview-a11y.js
 <script src="{{ path '/preview-a11y.js' }}"></script>
 ```
 
-4. Add an ID of `component-preview` to your `preview` template to the container of your main yeild
+4. Optionally - To test *just* the component and not the entire preview page, add a data attribute of `data-axe-test-target` to your `preview` template to the container of your main yield:
 
 ```handlebars
-<main id="component-preview">
+<main data-axe-test-target>
   {{{ yield }}}
 </main>
 ```
