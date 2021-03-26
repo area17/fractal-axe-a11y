@@ -176,6 +176,12 @@
 }
 
 .axe-a11y__expander-trigger {
+  width: 100%;
+  text-align: left;
+}
+
+.axe-a11y__expander-trigger:focus {
+  outline: 1px solid black;
   outline-offset: 8px;
 }
 
@@ -187,6 +193,11 @@
   border-top: 1px solid #ccc;
   border-right: 1px solid #ccc;
   transform: rotate(45deg);
+  transition: transform 0.3s ease-in-out;
+}
+
+.axe-a11y__expander--active .axe-a11y__expander-icon {
+  transform: rotate(135deg);
 }
 
 .axe-a11y__expander-title {
@@ -203,4 +214,48 @@
 }
 
 .axe-a11y__expander-content-inner {
+}
+
+.axe-a11y__node-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.axe-a11y__highlight {
+  position: relative;
+}
+
+.axe-a11y__highlight span {
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  z-index: 100;
+  margin-right: 8px;
+  padding: 4px 8px;
+  background: #000;
+  color: #fff;
+  font-size: 12px;
+  line-height: 1;
+  transform: translateY(-50%);
+  border-radius: 4px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.axe-a11y__highlight span::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -3px;
+  width: 6px;
+  height: 6px;
+  margin-top: -3px;
+  background: black;
+  transform: rotate(45deg);
+}
+
+.axe-a11y__highlight:hover span {
+  opacity: 1;
 }

@@ -30,6 +30,27 @@
   FractalAxeA11yTest.prototype.receiveMessage = function (e) {
     if( e.data.message === 'a11yRun'){
       this.run();
+    }else if(e.data.message === 'a11yUpdateHighlight'){
+      this.updateHighlightStyles(e.data.selectors);
+    }
+  };
+
+  FractalAxeA11yTest.prototype.updateHighlightStyles = function (selectors){
+    const stylesBlock = document.querySelector('[data-axe-a11y-highlight-styles]');
+
+    console.log('update')
+
+    if(stylesBlock){
+      stylesBlock.remove();
+    }
+
+    if(selectors.length > 0){
+      const style = document.createElement('style');
+      style.setAttribute('data-axe-a11y-highlight-styles', '');
+
+      style.innerHTML = `${selectors.join(',')} { outline: 3px dashed green; outline-offset: 8px; }`;
+
+      document.head.appendChild(style);
     }
   };
 

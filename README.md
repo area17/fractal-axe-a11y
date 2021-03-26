@@ -7,7 +7,7 @@ This addon adds accessibility testing to your [Fractal](http://fractal.build) co
 To install Fractal Axe A11y to your Fractal instance use:
 
 ```bash
-npm i fractal-axe-a11y
+npm i @area17/fractal-axe-a11y
 ```
 
 ## Configuration
@@ -29,9 +29,9 @@ axeA11y(theme);
 fractal.web.theme(theme);
 ```
 
-2. Copy `preview-a11y.js` from package to Fractal public folder. Example using [Laravel Mix](https://laravel-mix.com/):
+1. Copy `preview-a11y.js` from package to Fractal public folder.
 
-```javascript
+```bash
 $ cp -i node_modules/fractal-axe-a11y/preview-a11y.js public/preview-a11y.js
 ```
 

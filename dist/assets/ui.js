@@ -6,10 +6,12 @@
     window.addEventListener('a11yPanelLoad', this.loadData.bind(this), false);
   }
 
-  FractalAxeA11yUI.prototype.run = function () {
-    const iframe = document.querySelector('.Preview-iframe').contentWindow;
+  FractalAxeA11yUI.prototype.iframe = document.querySelector('.Preview-iframe').contentWindow;
 
-    iframe.postMessage({ message: 'a11yRun'});
+  FractalAxeA11yUI.prototype.selectors = [];
+
+  FractalAxeA11yUI.prototype.run = function () {
+    this.iframe.postMessage({ message: 'a11yRun'});
   };
 
   FractalAxeA11yUI.prototype.receiveMessage = function (e) {
@@ -45,6 +47,34 @@
     }
 
     this.initExpanders();
+    this.initHighlights();
+  };
+
+  FractalAxeA11yUI.prototype.initHighlights = function (){
+    const highlighters = document.querySelectorAll('[data-a11y-highlight]');
+
+    highlighters.forEach(item => {
+      item.addEventListener('change', (e) => {
+        const el = e.target;
+        if( el.checked){
+          if(!this.selectors.includes(el.value)){
+            this.selectors.push(el.value);
+          }
+        }else{
+          this.selectors = this.selectors.filter(selector => selector !== el.value);
+        }
+
+        const linkedInputs = document.querySelectorAll(`[data-a11y-highlight][value="${this.parseString(el.value)}"]`);
+
+        linkedInputs.forEach(linkedInput => (linkedInput.checked = el.checked));
+
+        this.updateHighlightStyles();
+      });
+    });
+  };
+
+  FractalAxeA11yUI.prototype.updateHighlightStyles = function (){
+    this.iframe.postMessage({ message: 'a11yUpdateHighlight', selectors: this.selectors});
   };
 
   FractalAxeA11yUI.prototype.initExpanders = function (){
@@ -69,10 +99,10 @@
         }else{
           content.style.height = `${contentHeight}px`;
 
-          setTimeout(() => {
-            item.classList.add('axe-a11y__expander--active');
+          item.classList.add('axe-a11y__expander--active');
 
-            content.style.height = ``;
+          setTimeout(() => {
+            content.style.height = `auto`;
           }, 300);
         }
 
@@ -84,7 +114,7 @@
   FractalAxeA11yUI.prototype.parseString = function (str){
     if(!str) return;
 
-    return str.replace(/[&<>]/g,
+    return str.replace(/[&<>\'\"]/g,
       tag =>
         ({
           '&': '&amp;',
@@ -106,7 +136,14 @@
 
       return `
         <li>
-          <p><code>${el.target}</code></p>
+          <div class="axe-a11y__node-header">
+            <code>${this.parseString(el.target[0])}</code>
+
+            <label class="axe-a11y__highlight">
+              <span>Highlight</span>
+              <input type="checkbox" name="highlight" value="${this.parseString(el.target[0])}" data-a11y-highlight />
+            </label>
+          </div>
 
           ${el.impact ? `<span class="axe-a11y__impact axe-a11y__impact--${el.impact}">${this.parseString(el.impact)}</span>` : ``}
 
