@@ -32,7 +32,7 @@ fractal.web.theme(theme);
 2. Include `preview-a11y.js` in Fractal `preview` template:
 
 ```handlebars
-<script src="{{ path '/axe-a11y/preview-a11y.js' }}"></script>
+<script src="{{ path '/axe-a11y/a11y.js' }}"></script>
 ```
 
 3. Optionally - To test *just* the component and not the entire preview page, add a data attribute of `data-axe-test-target` to your `preview` template to the container of your main yield:
