@@ -5,8 +5,8 @@ function setupAxeA11y(theme) {
       throw new Error('Fractal Theme Config Missing');
   }
 
-  theme.addLoadPath(path.resolve(__dirname, 'dist', 'views'));
-  theme.addStatic(path.resolve(__dirname, 'dist', 'assets'), 'axe-a11y');
+  theme.addLoadPath(path.resolve(__dirname, 'views'));
+  theme.addStatic(path.resolve(__dirname, 'assets'), 'axe-a11y');
 
   const options = theme.options();
 

@@ -7,7 +7,7 @@ This addon adds accessibility testing to your [Fractal](http://fractal.build) co
 To install Fractal Axe A11y to your Fractal instance use:
 
 ```bash
-npm i @area17/fractal-axe-a11y
+npm install @area17/fractal-axe-a11y
 ```
 
 ## Configuration
@@ -29,19 +29,13 @@ axeA11y(theme);
 fractal.web.theme(theme);
 ```
 
-1. Copy `preview-a11y.js` from package to Fractal public folder.
-
-```bash
-$ cp -i node_modules/fractal-axe-a11y/preview-a11y.js public/preview-a11y.js
-```
-
-3. Include `preview-a11y.js` in Fractal `preview` template:
+2. Include `preview-a11y.js` in Fractal `preview` template:
 
 ```handlebars
-<script src="{{ path '/preview-a11y.js' }}"></script>
+<script src="{{ path '/axe-a11y/preview-a11y.js' }}"></script>
 ```
 
-4. Optionally - To test *just* the component and not the entire preview page, add a data attribute of `data-axe-test-target` to your `preview` template to the container of your main yield:
+3. Optionally - To test *just* the component and not the entire preview page, add a data attribute of `data-axe-test-target` to your `preview` template to the container of your main yield:
 
 ```handlebars
 <main data-axe-test-target>
