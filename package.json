@@ -1,6 +1,6 @@
 {
   "name": "@area17/fractal-axe-a11y",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "AREA 17",
   "description": "A Fractal add on to test your components for accessibility issues using Axe",
   "main": "index.js",
